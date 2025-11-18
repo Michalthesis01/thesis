@@ -1,0 +1,47 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 """\
+Minimap2 Assembly-to-Assembly Alignment Pipeline (v2.28-r1209)\
+==============================================================\
+\
+Description:\
+    This pipeline uses Minimap2 to perform a rapid, sensitive alignment of a query genome \
+    or assembly against a reference genome. It is optimized for large-scale, whole-genome \
+    comparison tasks, often used in comparative genomics or scaffold placement.\
+\
+Key Features:\
+    1. Two-Step Optimization: Splits the process into a single, efficient **indexing** step \
+       and a subsequent, fast **mapping** step, minimizing redundant computation when \
+       the reference is reused.\
+    2. Preset Configuration: Uses the `-x asm5` preset, which configures Minimap2 with \
+       parameters (k-mer size, minimum match length, etc.) optimized for high-quality \
+       assembly-to-assembly alignment, offering a balance of speed and sensitivity.\
+    3. Output Format: The alignment results are written to a **PAF (Pairwise mApping Format)** file, a standard tab-delimited format detailing the mappings.\
+\
+Commands:\
+    1. Indexing (`-d`): Builds the reference index file (`.mmi`).\
+    2. Mapping: Aligns query sequences to the reference using the index file.\
+\
+Purpose:\
+    To generate the initial alignment data (PAF) required for downstream analysis, \
+    such as identifying synteny, structural variants, or performing quality control \
+    on assembly contigs.\
+"""\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 1: Indexing: 
+\f0\b0 minimap2 -x asm5 -d /path/to/reference/genome.mmi /path/to/reference/genome.fasta\kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 2: Mapping 
+\f0\b0 minimap2 -x asm5 /path/to/reference/genome.mmi /path/to/query/sequences.fasta > /path/to/output/alignments.paf}
